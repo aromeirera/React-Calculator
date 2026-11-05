@@ -43,7 +43,7 @@ function Calculator() {
           <button className="bg-orange-300 h-28 border border-gray-400 text-white text-3xl">+</button>
 
           <button className=" h-28 border border-gray-400 text-3xl col-span-2" onClick={clickHandle}>0</button>
-          <button className=" h-28 border border-gray-400 text-3xl">.</button>
+          <button className=" h-28 border border-gray-400 text-3xl" onClick={clickHandle}>.</button>
           <button className="bg-orange-300 h-28 border border-gray-400 text-white text-3xl">=</button>
 
         </div>
