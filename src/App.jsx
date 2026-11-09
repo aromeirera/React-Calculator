@@ -10,9 +10,16 @@ function Calculator() {
   setValue((value)=>Number(String(value)+e.target.innerText))
   }
   function operator(operatorSign){
+    if(operatorSign === "%"){
+     setValue(value/100)
+    }else if (operatorSign === "+/-"){
+      setValue(value*-1)
+    }
+    else{
     setNumber(value)
     setSign(operatorSign)
     setValue("")
+    }
   }
   function equalSign(){
     if (sign=== "+"){
@@ -24,7 +31,7 @@ function Calculator() {
     }else if(sign === "×"){
       setValue(number*value)
     }
-  }
+    }
   return (
     <div className="min-h-screen flex justify-center items-center p-4">
 
@@ -36,8 +43,8 @@ function Calculator() {
         <div className="grid grid-cols-4 font-semibold">
 
           <button className=" h-28 border border-gray-400 text-3xl" onClick={handleClear}>AC</button>
-          <button className=" h-28 border border-gray-400 text-3xl">+/-</button>
-          <button className=" h-28 border border-gray-400 text-3xl">%</button>
+          <button className=" h-28 border border-gray-400 text-3xl"onClick={()=>operator("+/-")}>+/-</button>
+          <button className=" h-28 border border-gray-400 text-3xl"onClick={()=>operator("%")}>%</button>
           <button className="bg-orange-300 h-28 border border-gray-400 text-white text-3xl" onClick={()=>operator("÷")}>÷</button>
 
           <button className=" h-28 border border-gray-400 text-3xl" onClick={clickHandle}>7</button>
