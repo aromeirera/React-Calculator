@@ -10,12 +10,10 @@ function Calculator() {
   setValue((value)=>Number(String(value)+e.target.innerText))
   }
   function operator(operatorSign){
-    if(operatorSign === "%"){
-     setValue(value/100)
-    }else if (operatorSign === "+/-"){
+   
+    if (operatorSign === "+/-"){
       setValue(value*-1)
-    }
-    else{
+    }else{
     setNumber(value)
     setSign(operatorSign)
     setValue("")
@@ -30,6 +28,8 @@ function Calculator() {
       setValue(number/value);
     }else if(sign === "×"){
       setValue(number*value)
+    }else  if(sign === "%"){
+     setValue(number%value)
     }
     }
   return (
