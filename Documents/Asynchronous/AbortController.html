@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+    <!-- Write a function that takes a URL and fetches data from that
+    URL but aborts when the request takes more than 10ms -->
+<script>
+function GettingData(url){
+    const rejector= new AbortController();
+    setTimeout(() => {
+        rejector.abort();
+    }, 10);
+    
+    fetch(url,{
+        signal: rejector.signal
+    })
+    .then(response=>response.json())
+    .then (data=> console.log(data))
+    .catch( error=>console.log(error))     
+ }
+ GettingData(url);
+</script>
+    <!-- Write a javascript function that displays a number every two seconds
+     and stops displaying after 5 seconds -->
+<script>
+    function timer(data) {
+   let interval = setInterval(() => {
+        console.log("How are you!")
+    }, 2000); 
+    setTimeout(()=>{
+      clearInterval(interval)
+    },5000);
+    }
+</script>
+    <!-- Write a JavaScript function that fetches data from an API and retries
+    the request a specified number of times if it fails. Wrap a promise around it. -->
+<script>
+    function getInformation(URL,retries) {
+        const data = fetch(URL);
+            return Promise.resolve(data)
+                .then (response=>console.log(URL))
+                .catch(error=>{
+                    if (retries>0) {
+                        
+                    }
+                })
+
+    }
+    getInformation(URL)
+</script>
+9. Create a function called fetchUserTodos that uses the Promise.all() method to fetch users and todos concurrently from the provided API endpoints and combine them based on the userId. The function should return a promise that resolves with the combined data.
+    
+    
+    - Users endpoints `https://jsonplaceholder.typicode.com/users`
+    - Todos endpoints `https://jsonplaceholder.typicode.com/todos`
+    
+    The returned promise should resolve into an array of users, where each user object has a new key todos. This key should contain an array of todos that belong to the user, determined by matching the userId of the todo with the id of the user. User objects may look like
+  // User object may look like
+  {
+      id: 10,
+    name: 'Clementina DuBuque',
+    ...
+  }
+
+  // Todo object may look like
+  {
+      userId: 5,
+    completed: false,
+      ...
+  }
+
+  // The result array will have objects that look like
+
+  {
+      id: 10,
+    name: 'Clementina DuBuque',
+    todos: [
+          {
+              userId: 10,
+            completed: false,
+              ...
+          },
+          {
+              userId: 10,
+            completed: false,
+              ...
+          }
+      ]
+      ...
+  }
+<script>
+    function fetchUserTodos() {
+  const usersUrl = "https://jsonplaceholder.typicode.com/users";
+  const todosUrl = "https://jsonplaceholder.typicode.com/todos";
+
+  return Promise.all([
+    fetch(usersUrl).then(response => response.json()),
+    fetch(todosUrl).then(response => response.json())
+  ])
+  .then(([users, todos]) => {
+
+    for (const i of users) {
+      i.todos = [];
+
+      for (const el of todos) {
+        if (el.userId === i.id) {
+          i.todos.push(el);
+        }
+      }
+    }
+
+    return users;
+  });
+}
+
+fetchUserTodos()
+  .then(data => console.log(data))
+  .catch(error => console.log(error));
+</script>
+
+
+// const rejector = new AbortController()
+
+
+
+// let gitstatus= fetch(url,{
+//     signal: controller.signal
+// })
+
+// let response= Response.json((url))
+
+// console.log (response)
+
+
+// setTimeout(()=>{
+//     controller.abort()
+// console.log("fetch aborted")
+// }, 10);
+
+// if ( response.setTimeout>10ms){
+
+//      Abortcontroller(response)
+
+// }
