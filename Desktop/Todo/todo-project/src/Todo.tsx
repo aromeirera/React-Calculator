@@ -11,8 +11,8 @@ function Todo() {
           <ul className="list-none">
            <li>
           <input type="checkbox" />
-          <span>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</span>
-        
+          {/* <span>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</span>
+          <img src="src/trash-solid-full.svg" className="h-6 w-6"/> */}
           </li>
           </ul>
 
