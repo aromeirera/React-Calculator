@@ -1,4 +1,10 @@
-//import { useState } from 'react'
+import { useState, useReducer, useRef } from 'react'
+import type {Task} from './types';
+const initialTasks: Task[] = [];
+type TaskAction = {
+  type: "ADD_TASK";
+  title: string;
+};
 function Todo() {
   return (
     <>  
